@@ -1,4 +1,5 @@
 import ToDoApp from './Components/TodoApp'
+// import Counter from './Components/Counter'
 import './App.css'
 function App() {
 
@@ -6,6 +7,7 @@ function App() {
     < >
     <div className="flex flex-col justify-center align-middle">
     <ToDoApp/>
+    {/* <Counter/> */}
     </div>
       
     </>
