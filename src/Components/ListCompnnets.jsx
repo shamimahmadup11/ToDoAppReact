@@ -1,8 +1,9 @@
 
 import PropTypes from "prop-types";
 
-const ListCompnnets = ({ List, removeList, todoData }) => {
-  console.log(todoData);
+const ListCompnnets = ({ List, removeList }) => {
+    
+ 
   return (
     <div>
       <div
@@ -33,7 +34,6 @@ const ListCompnnets = ({ List, removeList, todoData }) => {
 ListCompnnets.propTypes = {
   List: PropTypes.object,
   removeList: PropTypes.func,
-  todoData: PropTypes.array,
 };
 
 export default ListCompnnets;
