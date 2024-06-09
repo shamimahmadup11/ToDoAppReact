@@ -1,30 +1,62 @@
-import ToDoApp from './Components/TodoApp'
-// import Counter from './Components/Counter'
-import './App.css'
-import ImageSlider from './Components/ImageSlider'
 
- 
- const images=[
-  "https://media.istockphoto.com/id/1487710789/photo/student-paying-attention-during-class-in-the-university.jpg?s=1024x1024&w=is&k=20&c=H57IASttjLlaIcbyxebiPO5PzYCDb8_hTd8VRZ2RXUQ=",
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ToDoApp from './Components/TodoApp';
+import './App.css';
+import ImageSlider from './Components/ImageSlider';
+import Form from './Components/Form';
+import Showhide from './Components/Showhide';
+import DragDrop from './Components/DragDrop';
+import UseReducer from './Components/UseReducer';
+import { ContextProvider } from './Context/UseContext';
+import Navbar from './Components/Navbar';
+import FirebaseAuthPage from './Components/FirebaseAuthPage';
+import Blog from './Components/Blog';
+import Home from './Components/Home';
 
-  "https://media.istockphoto.com/id/1326278040/photo/group-of-people-doing-a-business-meeting.jpg?s=1024x1024&w=is&k=20&c=hjp0DWk4i4qWzHUzSjJYALuAjONL5SfP5t2PpvhiJnI=",
+const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <> <Navbar /> <Showhide /> </>
+    },
+    {
+      path: "/dragdrop",
+      element: <> <Navbar /> <DragDrop /> </>
+    },
+    {
+      path: "/todo",
+      element: <> <Navbar /> <ToDoApp /> </>
+    },
+    {
+      path: "/form",
+      element: <> <Navbar /> <Form /> </>
+    },
+    {
+      path: "/imgslider",
+      element: <> <Navbar /> <ImageSlider /> </>
+    },
+    {
+      path: "/useReducer",
+      element: <> <Navbar /> <UseReducer /> </>
+    },{
+      path: "/firebase",
+      element: <> <Navbar /> <FirebaseAuthPage /> </>
+    },
+    {
+      path: "/blog",
+      element: <> <Navbar /> <Blog /> </>
+    },{
+      path: "/home",
+      element: <>  <Home   /> </>
+    }
 
-  "https://media.istockphoto.com/id/1326278040/photo/group-of-people-doing-a-business-meeting.jpg?s=1024x1024&w=is&k=20&c=hjp0DWk4i4qWzHUzSjJYALuAjONL5SfP5t2PpvhiJnI=",
-
-  "https://media.istockphoto.com/id/1191969898/photo/colleagues-having-a-discussion-in-the-office.jpg?s=1024x1024&w=is&k=20&c=pnW0m91NKtWi8uVVxxElXn6duMrDY60FiytdUpwURUE=",
- ]
-function App() {
+  ]);
 
   return (
-    < >
-    <div className="flex flex-col justify-center align-middle">
-    <ToDoApp/>
-    {/* <Counter/> */}
-    <ImageSlider  images={images}/>
-    </div>
-      
-    </>
-  )
+    <ContextProvider>
+      <RouterProvider router={router} />
+    </ContextProvider>
+  );
 }
 
-export default App
+export default App;
