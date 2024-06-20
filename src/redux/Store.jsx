@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from "@reduxjs/toolkit";
 
 const initialCounterState = { count: 10 };
-
+ // slices 
 const counterReducer = (state = initialCounterState, action) => {
     switch (action.type) {
         case "increment":
