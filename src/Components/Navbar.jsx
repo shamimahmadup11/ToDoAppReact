@@ -44,6 +44,16 @@ const Navbar = () => {
            Blog
           </Link>
         </li>
+        <li>
+          <Link to="/modernTodo" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+           MOdernTodo
+          </Link>
+        </li>
+        <li>
+          <Link to="/inc" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+           IncreMentDecrementWithRedux
+          </Link>
+        </li>
       </ul>
       <button className="md:hidden flex justify-center w-8 h-8 bg-gray-800 rounded-full hover:bg-gray-700">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

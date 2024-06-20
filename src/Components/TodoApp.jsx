@@ -2,10 +2,11 @@ import "../App.css";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import ListCompnnets from "./ListCompnnets";
+
 const InitialState = [
   {
     id: uuid(),
-    task: "work the asignment",
+    task: "work the assignment",
     isComplete: false,
     timeTemp: Date.now(),
   },
@@ -14,17 +15,37 @@ const InitialState = [
 const ToDoApp = () => {
   const [searchText, setSearchText] = useState("Write Todo");
   const [todoData, setTodoData] = useState(InitialState);
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState("");
 
   function inputHandler(e) {
     setSearchText(e.target.value);
   }
 
-  function removeList(id) {
-    const updateData = todoData.filter((task) => {
-      return task.id !== id;
-    });
+  function editInputHandler(e) {
+    setEditText(e.target.value);
+  }
 
+  function removeList(id) {
+    const updateData = todoData.filter((task) => task.id !== id);
     setTodoData(updateData);
+  }
+
+  function editHandler(id, currentText) {
+    setEditId(id);
+    setEditText(currentText);
+  }
+
+  function saveEdit(id) {
+    const updatedData = todoData.map((task) => {
+      if (task.id === id) {
+        return { ...task, task: editText };
+      }
+      return task;
+    });
+    setTodoData(updatedData);
+    setEditId(null);
+    setEditText("");
   }
 
   const List = () => {
@@ -61,10 +82,43 @@ const ToDoApp = () => {
         <ol className="list-decimal text-black font-extrabold  text-lg">
           {todoData.length === 0
             ? "Please Add Todo ... "
-            : todoData.map((List) => (
-                  <>
-                  <ListCompnnets todoData={todoData} List={List} removeList={removeList}  searchText={searchText} key={List.id} />
-                  </>
+            : todoData.map((task) => (
+                <li key={task.id} className="mb-2">
+                  {editId === task.id ? (
+                    <div className="flex">
+                      <input
+                        className="h-10 w-full bg-slate-200 rounded-md px-2"
+                        type="text"
+                        value={editText}
+                        onChange={editInputHandler}
+                      />
+                      <button
+                        className="ml-2 bg-blue-500 text-white rounded-md px-4"
+                        onClick={() => saveEdit(task.id)}
+                      >
+                        Save
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex justify-between">
+                      <span>{task.task}</span>
+                      <div>
+                        <button
+                          className="bg-yellow-500 text-white rounded-md px-4 mr-2"
+                          onClick={() => editHandler(task.id, task.task)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="bg-red-500 text-white rounded-md px-4"
+                          onClick={() => removeList(task.id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </li>
               ))}
         </ol>
       </div>

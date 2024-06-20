@@ -12,6 +12,9 @@ import Navbar from './Components/Navbar';
 import FirebaseAuthPage from './Components/FirebaseAuthPage';
 import Blog from './Components/Blog';
 import Home from './Components/Home';
+import TaskList from './Components/TaskList';
+import ModernTodo from './Components/ModernTodo';
+import Counter from './Components/Counter';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -48,6 +51,18 @@ const App = () => {
     },{
       path: "/home",
       element: <>  <Home   /> </>
+    }
+    ,{
+      path: "/modernTodo",
+      element: <> <Navbar /> <ModernTodo   />  </>
+    }
+    ,{
+      path: "/tasklist",
+      element: <> <Navbar /> <TaskList /> </>
+    }
+    ,{
+      path: "/inc",
+      element: <> <Navbar /><Counter/></>
     }
 
   ]);
